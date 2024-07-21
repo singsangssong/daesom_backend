@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@ChannelHandler.Sharable
+@io.netty.channel.ChannelHandler.Sharable
 @RequiredArgsConstructor
-public class StringHandler extends ChannelInboundHandlerAdapter {
+public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
+
     private int DATA_LENGTH = 1024;
     private ByteBuf buff;
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class NettyChannelInitializer extends ChannelInitializer<SocketChannel> {
-    private final StringHandler stringHandler;
+    private final NettyChannelHandler stringHandler;
     // 클라이언트 소켓 채널이 생성될 때 호출
     @Override
     protected void initChannel(SocketChannel ch) {
