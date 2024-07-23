@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.util.ReferenceCountUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.server.MsgService;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -15,6 +16,8 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     private int DATA_LENGTH = 1024;
     private ByteBuf buff;
+
+    private final MsgService msgService;
 
     // 핸들러가 생성될 때 호출되는 메소드
     @Override
@@ -44,6 +47,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg){
         String in = (String) msg;
         log.info("received data: " + in);
+        msgService.onMsg(in);
 
         // 버퍼에 데이터를 쓰고 클라이언트에게 전송
 //        ByteBuf responseBuf = ctx.alloc().buffer(in.length());
