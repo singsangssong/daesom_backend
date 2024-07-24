@@ -12,6 +12,6 @@ public class MsgService {
 
     // 전송된 메세지 저장
     public void onMsg(String msg) {
-        System.out.println("msg = " + msg);
+
     }
 }

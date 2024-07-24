@@ -3,8 +3,8 @@ package org.example.api.member;
 import lombok.RequiredArgsConstructor;
 import org.example.database.member.dto.RegisterReq;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,5 +17,11 @@ public class MemberController {
         memberService.register(registerReq);
 
         return ResponseEntity.ok("okay");
+    }
+
+    @GetMapping("/member")
+    public ResponseEntity<String> test() {
+
+        return ResponseEntity.ok("hello funkin multi");
     }
 }
