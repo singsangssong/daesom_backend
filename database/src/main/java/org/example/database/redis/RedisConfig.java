@@ -48,7 +48,6 @@ public class RedisConfig {
 
         return redisTemplate;
     }
-ChannelTopic
     @Bean
     public RedisTemplate<String, MsgReq> redisMessageTemplate() {
         RedisTemplate<String, MsgReq> redisMessageTemplate = new RedisTemplate<>();
