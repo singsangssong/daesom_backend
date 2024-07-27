@@ -1383,7 +1383,7 @@ webdb|schema||webuser|localhost|UPDATE|G</Grants>
     </schema>
     <schema id="511" parent="1" name="daesom">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-07-23.15:32:50</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-07-27.09:16:25</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_general_ci</CollationName>
     </schema>
     <schema id="512" parent="1" name="performance_schema">
@@ -1478,7 +1478,7 @@ webdb|schema||webuser|localhost|UPDATE|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="537" parent="525" name="chatRoomId">
+    <column id="537" parent="525" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
@@ -1498,7 +1498,7 @@ webdb|schema||webuser|localhost|UPDATE|G</Grants>
       <Position>4</Position>
     </column>
     <index id="541" parent="525" name="PRIMARY">
-      <ColNames>chatRoomId</ColNames>
+      <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
@@ -1507,57 +1507,77 @@ webdb|schema||webuser|localhost|UPDATE|G</Grants>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="543" parent="526" name="id">
+    <column id="543" parent="526" name="chat_room_id">
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <index id="544" parent="526" name="PRIMARY">
-      <ColNames>id</ColNames>
+    <column id="544" parent="526" name="member_id">
+      <DasType>bigint(20)|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="545" parent="526" name="FKqd7ky4h79wnepp8gj99lna7gq">
+      <ColNames>chat_room_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>chatroom</RefTableName>
+    </foreign-key>
+    <foreign-key id="546" parent="526" name="FK34d73aw9dfbopj0jnx3koin33">
+      <ColNames>member_id</ColNames>
+      <RefColNames>id</RefColNames>
+      <RefTableName>member</RefTableName>
+    </foreign-key>
+    <index id="547" parent="526" name="PRIMARY">
+      <ColNames>chat_room_id
+member_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="545" parent="526" name="PRIMARY">
+    <index id="548" parent="526" name="FK34d73aw9dfbopj0jnx3koin33">
+      <ColNames>member_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="549" parent="526" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="546" parent="527" name="next_val">
+    <column id="550" parent="527" name="next_val">
       <DasType>bigint(20)|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="547" parent="528" name="memberId">
+    <column id="551" parent="528" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="548" parent="528" name="moddate">
+    <column id="552" parent="528" name="moddate">
       <DasType>datetime(6)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="549" parent="528" name="regdate">
+    <column id="553" parent="528" name="regdate">
       <DasType>datetime(6)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="550" parent="528" name="id">
+    <column id="554" parent="528" name="_id">
       <DasType>varchar(255)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="551" parent="528" name="name">
+    <column id="555" parent="528" name="name">
       <DasType>varchar(255)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="552" parent="528" name="password">
+    <column id="556" parent="528" name="password">
       <DasType>varchar(255)|0s</DasType>
       <Position>6</Position>
     </column>
-    <index id="553" parent="528" name="PRIMARY">
-      <ColNames>memberId</ColNames>
+    <index id="557" parent="528" name="PRIMARY">
+      <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="554" parent="528" name="PRIMARY">
+    <key id="558" parent="528" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

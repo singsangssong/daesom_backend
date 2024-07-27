@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.util.ReferenceCountUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.database.chatmsg.dto.MsgReq;
+import org.example.database.redis.RedisPub;
 import org.example.server.MsgService;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     private ByteBuf buff;
 
     private final MsgService msgService;
-
+    private final RedisPub redisPub;
     // 핸들러가 생성될 때 호출되는 메소드
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) {
@@ -47,6 +49,11 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg){
         String in = (String) msg;
         log.info("received data: " + in);
+
+        MsgReq msgReq = new MsgReq(1l, 1l, "지금 헨들러에서 만든 메세지.");
+
+        redisPub.publish("1", msgReq);
+
         msgService.onMsg(in);
 
         // 버퍼에 데이터를 쓰고 클라이언트에게 전송

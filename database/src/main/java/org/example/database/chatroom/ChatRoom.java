@@ -5,7 +5,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.database.common.BaseEntity;
+import org.example.database.jointable.ChatRoom_Member;
 import org.example.database.member.Member;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "chatroom")
@@ -15,19 +19,17 @@ public class ChatRoom extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long chatRoomId;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "chatRoom")
+    List<ChatRoom_Member> members = new ArrayList<>();
 
-//    @ManyToOne
-//    @JoinColumn(name = "member_id")
-//    private Member member;
-
-//    @Builder
-//    public ChatRoom(String name , ) {
-//
-//    }
+    @Builder
+    public ChatRoom(String name) {
+        this.name = name;
+    }
 
 }

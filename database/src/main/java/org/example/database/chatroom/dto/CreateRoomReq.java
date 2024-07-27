@@ -7,10 +7,16 @@ import java.util.List;
 
 @Getter
 public class CreateRoomReq {
-    String roomName;
-    List<String> userIdList;
+    private String roomName;
+    private List<Long> userIdList;
 
-//    public ChatRoom toEntity(CreateRoomReq createRoomReq) {
-//        return ChatRoom
+//    public ChatRoom toEntity(String roomName, List<Long> userIdList) {
+//
+//
+//        return ChatRoom.builder()
+//                .name(roomName)
+//                .memberIds(userIdList)
+//                .build();
 //    }
+
 }

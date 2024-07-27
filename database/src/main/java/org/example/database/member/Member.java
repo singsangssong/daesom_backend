@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.database.chatroom.ChatRoom;
 import org.example.database.common.BaseEntity;
+import org.example.database.jointable.ChatRoom_Member;
 import org.example.database.member.dto.RegisterReq;
 
 import java.util.ArrayList;
@@ -19,20 +20,20 @@ public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberId;
+    private Long id;
 
-    private String id;
+    private String _id;
 
     private String name;
 
     private String password;
 
-//    @OneToMany(mappedBy = "member")
-//    List<ChatRoom> chatRooms = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    List<ChatRoom_Member> chatRooms = new ArrayList<>();
 
     @Builder
-    public Member(String id, String name, String password) {
-        this.id = id;
+    public Member(String _id, String name, String password) {
+        this._id = _id;
         this.name = name;
         this.password = password;
     }
