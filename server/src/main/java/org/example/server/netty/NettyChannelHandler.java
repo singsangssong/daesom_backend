@@ -5,7 +5,10 @@ import io.netty.channel.*;
 import io.netty.util.ReferenceCountUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.server.MsgService;
+import org.example.database.chatmsg.dto.MsgDto;
+import org.example.database.redis.MsgRoomService;
+import org.example.database.redis.RedisPub;
+import org.example.database.redis.MsgService;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -18,7 +21,8 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     private ByteBuf buff;
 
     private final MsgService msgService;
-
+    private final MsgRoomService msgRoomService;
+    private final RedisPub redisPub;
     // 핸들러가 생성될 때 호출되는 메소드
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) {
@@ -45,13 +49,19 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg){
-        String in = (String) msg;
-        log.info("received data: " + in);
-        msgService.onMsg(in);
+        String message = (String) msg;
+        log.info("received data: " + message);
+
+        MsgDto msgReq = new MsgDto(1l, 2l, 1l, "지금 헨들러에서 인위적으로 만든 메세지.");
+
+        msgRoomService.enterChatRoom("1");
+
+        redisPub.publish("1", msgReq);
+        msgService.saveMsg(msgReq);
 
         // 버퍼에 데이터를 쓰고 클라이언트에게 전송
 //        ByteBuf responseBuf = ctx.alloc().buffer(in.length());
-        buff.writeBytes(in.getBytes());
+        buff.writeBytes(message.getBytes());
         final ChannelFuture f = ctx.writeAndFlush(buff.copy());
         f.addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
     }

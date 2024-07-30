@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="0@localhost">
+  <database-model serializer="dbm" dbms="REDIS" family-id="REDIS" format-version="4.51">
+    <root id="1">
+      <ServerVersion>7.2.4</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="0">
+      <Current>1</Current>
+    </schema>
+    <schema id="3" parent="1" name="1"/>
+    <schema id="4" parent="1" name="2"/>
+    <schema id="5" parent="1" name="3"/>
+    <schema id="6" parent="1" name="4"/>
+    <schema id="7" parent="1" name="5"/>
+    <schema id="8" parent="1" name="6"/>
+    <schema id="9" parent="1" name="7"/>
+    <schema id="10" parent="1" name="8"/>
+    <schema id="11" parent="1" name="9"/>
+    <schema id="12" parent="1" name="10"/>
+    <schema id="13" parent="1" name="11"/>
+    <schema id="14" parent="1" name="12"/>
+    <schema id="15" parent="1" name="13"/>
+    <schema id="16" parent="1" name="14"/>
+    <schema id="17" parent="1" name="15"/>
+    <string id="18" parent="2" name="12781b91-0a34-43cb-9370-8130685362aa"/>
+    <string id="19" parent="2" name="29b107a9-95b5-4fe7-bd67-7c70db74c088"/>
+    <string id="20" parent="2" name="2a9b284e-04c0-4d47-af14-d4e1879e1994"/>
+    <string id="21" parent="2" name="3cd87494-63c3-4665-b804-e705a24c28b0"/>
+    <string id="22" parent="2" name="6d2878c7-d4ba-4b96-81ee-e4df561285a4"/>
+    <string id="23" parent="2" name="6fded83b-608b-4056-95b7-96e4e4d36538"/>
+    <string id="24" parent="2" name="87c99538-6983-4289-abdd-69cfd873e4f5"/>
+    <string id="25" parent="2" name="a53c6e5d-d376-462e-b4aa-da0ad6c34eec"/>
+    <string id="26" parent="2" name="cdc168cc-b2c8-472e-a719-a77ae528168d"/>
+    <string id="27" parent="2" name="e3fbee75-1a61-4c51-91bd-dac8a85fddb4"/>
+    <string id="28" parent="2" name="f1354109-a896-4dbf-8c0a-bada5fd52a83"/>
+    <string id="29" parent="2" name="fc8ffbfb-45b3-47ac-bb8f-5c08c9583867"/>
+  </database-model>
+</dataSource>
