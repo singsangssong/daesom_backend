@@ -6,6 +6,7 @@ import io.netty.util.ReferenceCountUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.database.chatmsg.dto.MsgDto;
+import org.example.database.redis.MsgRoomService;
 import org.example.database.redis.RedisPub;
 import org.example.database.redis.MsgService;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     private ByteBuf buff;
 
     private final MsgService msgService;
+    private final MsgRoomService msgRoomService;
     private final RedisPub redisPub;
     // 핸들러가 생성될 때 호출되는 메소드
     @Override
@@ -51,6 +53,8 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
         log.info("received data: " + message);
 
         MsgDto msgReq = new MsgDto(1l, 2l, 1l, "지금 헨들러에서 인위적으로 만든 메세지.");
+
+        msgRoomService.enterChatRoom("1");
 
         redisPub.publish("1", msgReq);
         msgService.saveMsg(msgReq);

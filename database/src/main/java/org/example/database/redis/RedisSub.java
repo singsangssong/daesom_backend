@@ -22,7 +22,12 @@ public class RedisSub implements MessageListener {
             String pubMsg = redisTemplate.getStringSerializer().deserialize(message.getBody());
             MsgDto msgReq = objectMapper.readValue(pubMsg, MsgDto.class);
 
-            log.info(msgReq + "를 subscriber가 받았습니다!");
+
+            log.info(msgReq.getMsg() + "를 subscriber가 받았습니다!");
+            log.info(msgReq.getRoomId() + "를 subscriber가 받았습니다!");
+            log.info(msgReq.getReceiver() + "를 subscriber가 받았습니다!");
+
+
 
         } catch (Exception e) {
             log.error(e.getMessage());

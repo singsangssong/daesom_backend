@@ -54,5 +54,7 @@ public class RedisConfig {
 
         return redisMessageTemplate;
     }
+
+
 }
 
