@@ -2,12 +2,12 @@ package org.example.database.chatmsg.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
 @AllArgsConstructor
-public class MsgReq {
+public class MsgDto {
     private Long senderId;
+    private Long receiver;
     private Long roomId;
     private String msg;
 }

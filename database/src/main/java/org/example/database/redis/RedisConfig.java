@@ -1,16 +1,13 @@
 package org.example.database.redis;
 
-import org.example.database.chatmsg.dto.MsgReq;
+import org.example.database.chatmsg.dto.MsgDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.DefaultMessage;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
-import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -34,6 +31,7 @@ public class RedisConfig {
             (RedisConnectionFactory redisConnectionFactory) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(redisConnectionFactory);
+
         return container;
     }
 
@@ -48,8 +46,8 @@ public class RedisConfig {
         return redisTemplate;
     }
     @Bean
-    public RedisTemplate<String, MsgReq> redisMessageTemplate() {
-        RedisTemplate<String, MsgReq> redisMessageTemplate = new RedisTemplate<>();
+    public RedisTemplate<String, MsgDto> redisMessageTemplate() {
+        RedisTemplate<String, MsgDto> redisMessageTemplate = new RedisTemplate<>();
         redisMessageTemplate.setConnectionFactory(redisConnectionFactory());
         redisMessageTemplate.setKeySerializer(new StringRedisSerializer());
         redisMessageTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(String.class));

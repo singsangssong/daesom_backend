@@ -2,7 +2,7 @@ package org.example.database.redis;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.database.chatmsg.dto.MsgReq;
+import org.example.database.chatmsg.dto.MsgDto;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class RedisPub {
     private final RedisTemplate<String, Object> redisTemplate;
 
-    public void publish(String ch, MsgReq dto) {
+    public void publish(String ch, MsgDto dto) {
         log.info("현재" + ch + "에 publish를 준비중입니다.");
         redisTemplate.convertAndSend(ch, dto);
     }

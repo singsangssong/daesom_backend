@@ -47,6 +47,7 @@ subprojects {
 project('server') {
     dependencies {
         implementation project(path: ':database')
+        
     }
 }
 
