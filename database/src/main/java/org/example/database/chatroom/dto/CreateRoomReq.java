@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 public class CreateRoomReq {
     private String roomName;
-    private List<Long> userIdList;
+    private List<Long> memberIds;
 
 //    public ChatRoom toEntity(String roomName, List<Long> userIdList) {
 //
