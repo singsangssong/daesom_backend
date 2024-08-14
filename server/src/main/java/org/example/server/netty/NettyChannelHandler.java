@@ -5,6 +5,7 @@ import io.netty.channel.*;
 import io.netty.util.ReferenceCountUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.api.chatroom.ChatRoomService;
 import org.example.database.chatmsg.dto.MsgDto;
 import org.example.database.redis.MsgRoomService;
 import org.example.database.redis.RedisPub;
@@ -21,7 +22,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
     private ByteBuf buff;
 
     private final MsgService msgService;
-    private final MsgRoomService msgRoomService;
+    private final ChatRoomService chatRoomService;
     private final RedisPub redisPub;
     // 핸들러가 생성될 때 호출되는 메소드
     @Override
@@ -49,19 +50,17 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg){
-        String message = (String) msg;
+        MsgDto message = (MsgDto) msg;
         log.info("received data: " + message);
 
-        MsgDto msgReq = new MsgDto(1l, 2l, 1l, "지금 헨들러에서 인위적으로 만든 메세지.");
+        chatRoomService.enterChatRoom(message.getRoomId().toString());
 
-        msgRoomService.enterChatRoom("1");
-
-        redisPub.publish("1", msgReq);
-        msgService.saveMsg(msgReq);
+        redisPub.publish(message.getRoomId().toString(), message);
+        msgService.saveMsg(message);
 
         // 버퍼에 데이터를 쓰고 클라이언트에게 전송
 //        ByteBuf responseBuf = ctx.alloc().buffer(in.length());
-        buff.writeBytes(message.getBytes());
+        buff.writeBytes(message.toString().getBytes());
         final ChannelFuture f = ctx.writeAndFlush(buff.copy());
         f.addListener(ChannelFutureListener.CLOSE_ON_FAILURE);
     }
