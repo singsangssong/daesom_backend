@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RedisSub implements MessageListener {
+public class RedisSub implements MessageListener{
 
     private final RedisTemplate<String, Object> redisTemplate;
     private final ObjectMapper objectMapper;
@@ -23,9 +23,11 @@ public class RedisSub implements MessageListener {
             MsgDto msgReq = objectMapper.readValue(pubMsg, MsgDto.class);
 
 
-            log.info(msgReq.getMsg() + "를 subscriber가 받았습니다!");
-            log.info(msgReq.getRoomId() + "를 subscriber가 받았습니다!");
-            log.info(msgReq.getReceiver() + "를 subscriber가 받았습니다!");
+            log.info(msgReq.getMsg() + ": 메세지 내용");
+            log.info(msgReq.getRoomId() + ": 방번호");
+            log.info("gkdlgkdlglahlsdgpa");
+
+            redisTemplate.convertAndSend()
 
         } catch (Exception e) {
             log.error(e.getMessage());
