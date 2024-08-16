@@ -35,5 +35,7 @@ public class ChatRoom extends BaseEntity {
 
     public ChatRoomDto toDto(ChatRoom chatRoom) {
         ChatRoomDto chatRoomDto = new ChatRoomDto(chatRoom);
+
+        return chatRoomDto;
     }
 }

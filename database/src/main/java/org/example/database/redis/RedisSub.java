@@ -27,8 +27,6 @@ public class RedisSub implements MessageListener {
             log.info(msgReq.getRoomId() + "를 subscriber가 받았습니다!");
             log.info(msgReq.getReceiver() + "를 subscriber가 받았습니다!");
 
-
-
         } catch (Exception e) {
             log.error(e.getMessage());
         }

@@ -1,12 +1,16 @@
 package org.example.database.chatroom.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import org.example.database.chatroom.ChatRoom;
 
-@Getter
+import java.io.Serializable;
 
-public class ChatRoomDto {
+@Getter
+public class ChatRoomDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String roomId;
     private String roomName;
 //    private Long ownerId;

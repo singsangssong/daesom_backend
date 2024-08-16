@@ -1,6 +1,7 @@
 package org.example.database.redis;
 
 import org.example.database.chatmsg.dto.MsgDto;
+import org.example.database.chatroom.dto.ChatRoomDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,6 @@ public class RedisConfig {
         return container;
     }
 
-
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
@@ -45,16 +45,25 @@ public class RedisConfig {
 
         return redisTemplate;
     }
+
+//    @Bean
+//    public RedisTemplate<String, ChatRoomDto> redisRoomTemplate() {
+//        RedisTemplate<String, ChatRoomDto> redisTemplate = new RedisTemplate<>();
+//        redisTemplate.setConnectionFactory(redisConnectionFactory());
+//        redisTemplate.setKeySerializer(new StringRedisSerializer());
+//        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatRoomDto.class));
+//        return redisTemplate;
+//    }
+
     @Bean
     public RedisTemplate<String, MsgDto> redisMessageTemplate() {
-        RedisTemplate<String, MsgDto> redisMessageTemplate = new RedisTemplate<>();
-        redisMessageTemplate.setConnectionFactory(redisConnectionFactory());
-        redisMessageTemplate.setKeySerializer(new StringRedisSerializer());
-        redisMessageTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(String.class));
+        RedisTemplate<String, MsgDto> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(String.class));
 
-        return redisMessageTemplate;
+        return redisTemplate;
     }
-
 
 }
 
