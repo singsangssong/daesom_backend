@@ -1,4 +1,4 @@
-package org.example.database.redis;
+package org.example.api.chatmsg;
 
 import lombok.RequiredArgsConstructor;
 import org.example.database.chatmsg.ChatMsg;

@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.api.chatroom.ChatRoomService;
 import org.example.database.chatmsg.dto.MsgDto;
 import org.example.database.redis.RedisPub;
-import org.example.database.redis.MsgService;
+import org.example.api.chatmsg.MsgService;
 import org.springframework.stereotype.Component;
 
 @Slf4j
