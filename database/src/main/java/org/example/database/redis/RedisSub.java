@@ -27,7 +27,7 @@ public class RedisSub implements MessageListener{
             log.info(msgReq.getRoomId() + ": 방번호");
             log.info("gkdlgkdlglahlsdgpa");
 
-            redisTemplate.convertAndSend()
+//            redisTemplate.convertAndSend()
 
         } catch (Exception e) {
             log.error(e.getMessage());

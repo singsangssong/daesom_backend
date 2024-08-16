@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.api.chatroom.ChatRoomService;
 import org.example.database.chatmsg.dto.MsgDto;
-import org.example.database.redis.MsgRoomService;
 import org.example.database.redis.RedisPub;
 import org.example.database.redis.MsgService;
 import org.springframework.stereotype.Component;
@@ -55,7 +54,7 @@ public class NettyChannelHandler extends ChannelInboundHandlerAdapter {
 
         chatRoomService.enterChatRoom(message.getRoomId().toString());
 
-        redisPub.publish(message.getRoomId().toString(), message);
+        redisPub.publish(chatRoomService.getTopic(message.getRoomId().toString()), message);
         msgService.saveMsg(message);
 
         // 버퍼에 데이터를 쓰고 클라이언트에게 전송

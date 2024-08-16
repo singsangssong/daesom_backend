@@ -70,5 +70,9 @@ public class ChatRoomService {
         }
     }
 
+    public ChannelTopic getTopic(String roomId) {
+        return topics.get(roomId);
+    }
+
 
 }
