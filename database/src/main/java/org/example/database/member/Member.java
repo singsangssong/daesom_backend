@@ -37,4 +37,5 @@ public class Member extends BaseEntity {
         this.name = name;
         this.password = password;
     }
+
 }

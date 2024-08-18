@@ -17,8 +17,10 @@ public class ChatRoomController {
 
     @PostMapping("")
     public ResponseEntity<String> createChatRoom(@RequestBody CreateRoomReq createRoomReq) {
-
         chatRoomService.createRoom(createRoomReq);
         return ResponseEntity.ok("create room");
     }
+
+
+
 }

@@ -18,9 +18,12 @@ public class MsgService {
     //TODO: 채팅방
 
     //TODO: 채팅방 대화 저장(redis & db)
-    public void saveMsg(MsgDto msgReq) {
+    public Long saveMsg(MsgDto msgReq) {
         redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(ChatMsg.class));
         redisTemplate.opsForList().rightPush(msgReq.getRoomId().toString(), msgReq);
+
+        ChatMsg chatMsg = ChatMsg.builder().msgDto(msgReq).build();
+        return chatMsgRepo.save(chatMsg).getId();
     }
 
     //TODO: 채팅방 채팅내역 조회하기
